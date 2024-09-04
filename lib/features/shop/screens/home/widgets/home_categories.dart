@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/common/widgets/shimmer/category_shimmer.dart';
+import 'package:t_store/data/repositories/categories/category_controller.dart';
 import 'package:t_store/features/shop/screens/subCategories/sub_categories.dart';
 
 import '../../../../../common/widgets/img_text_widget/vertical_image_text.dart';
-import '../../../../../utils/constants/image_strings.dart';
 
 class THomeCategories extends StatelessWidget {
   const THomeCategories({
@@ -14,22 +15,33 @@ class THomeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 80,
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: 6,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return TVerticalImageText(
-            img: TImages.shoeIcon,
-            title: 'Shoes',
-            onPress: () {
-              Get.to(() => SubCategoriesScreen());
-            },
-          );
-        },
-      ),
-    );
+    final catCtrl = Get.put(CategoryController());
+    final featuredCategories = catCtrl.featuredCategories;
+    return Obx(() {
+      if (catCtrl.isLoadingCats.value) return CategoryShimmer();
+      if (featuredCategories.isEmpty) {
+        return Text("No Data Found", style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white));
+      }
+      return SizedBox(
+        height: 80,
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: featuredCategories.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return TVerticalImageText(
+              img: featuredCategories[index].image,
+              title: featuredCategories[index].name,
+              onPress: () {
+                // catCtrl.getSubCategories(featuredCategories[index].parentId);
+                Get.to(() => SubCategoriesScreen(
+                      parentId: featuredCategories[index].id,
+                    ));
+              },
+            );
+          },
+        ),
+      );
+    });
   }
 }

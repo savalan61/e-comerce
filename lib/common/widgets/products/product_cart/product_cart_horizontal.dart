@@ -9,18 +9,18 @@ import 'package:t_store/common/widgets/texts/product_title_text.dart';
 import 'package:t_store/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 
 import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
 import '../../custom_shapes/containers/rounded_container.dart';
 
 class TProductCartHorizontal extends StatelessWidget {
-  const TProductCartHorizontal({super.key});
+  const TProductCartHorizontal({super.key, required this.img});
+
+  final String img;
 
   @override
   Widget build(BuildContext context) {
     final bool isDark = THelperFunctions.isDarkMode(context);
-
     return Container(
       width: 310,
       padding: const EdgeInsets.all(1),
@@ -39,7 +39,11 @@ class TProductCartHorizontal extends StatelessWidget {
                 SizedBox(
                     height: 120,
                     width: 120,
-                    child: TRoundedImage(imageUrl: TImages.productImage1, applyImageRadius: true)),
+                    child: TRoundedImage(
+                      imageUrl: img,
+                      applyImageRadius: true,
+                      isNetworkImage: true,
+                    )),
                 Positioned(
                     top: 12,
                     child: TRoundedContainer(

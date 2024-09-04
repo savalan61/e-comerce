@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helpers/helper_functions.dart';
+import '../custome_shimmer/custome_shimmer.dart';
 
 class TVerticalImageText extends StatelessWidget {
   const TVerticalImageText({
@@ -39,11 +41,22 @@ class TVerticalImageText extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: Image(
-                  image: AssetImage(img),
+                child: CachedNetworkImage(
+                  imageUrl: img,
                   fit: BoxFit.cover,
-                  color: THelperFunctions.isDarkMode(context) ? TColors.light : TColors.black,
+                  // color: overlyColor,
+                  progressIndicatorBuilder: (context, url, progress) => const TShimmerEffect(
+                    width: 55,
+                    height: 55,
+                    radius: 100,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
+                // Image(
+                //   image: AssetImage(img),
+                //   fit: BoxFit.cover,
+                //   color: THelperFunctions.isDarkMode(context) ? TColors.light : TColors.black,
+                // ),
               ),
             ),
             SizedBox(

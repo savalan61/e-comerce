@@ -1,19 +1,24 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/images/t_rounded_image.dart';
-import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/data/repositories/categories/category_controller.dart';
+import 'package:t_store/features/shop/screens/subCategories/widgets/sucCategory_slider_widgwt.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
-import '../../../../common/widgets/products/product_cart/product_cart_horizontal.dart';
-
 class SubCategoriesScreen extends StatelessWidget {
-  const SubCategoriesScreen({super.key});
+  const SubCategoriesScreen({super.key, required this.parentId});
+
+  final String parentId;
 
   @override
   Widget build(BuildContext context) {
+    final catCtrl = CategoryController.instance;
+    catCtrl.getSubCategories(parentId);
+    final subCats = catCtrl.subCategories;
     return Scaffold(
       appBar: TAppbar(title: Text("Sports"), showBackArrow: true),
       body: SingleChildScrollView(
@@ -26,21 +31,17 @@ class SubCategoriesScreen extends StatelessWidget {
             SizedBox(height: TSizes.spaceBtwSections),
 
             /// Sub- Categories
-            Column(
-              children: [
-                TSectionHeading(title: "Sports shirts"),
-                SizedBox(height: TSizes.spaceBtwItems / 2),
-                SizedBox(
-                  height: 120,
-                  child: ListView.separated(
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => TProductCartHorizontal(),
-                    separatorBuilder: (context, index) => SizedBox(width: TSizes.spaceBtwItems),
-                  ),
+            Obx(() {
+              if (catCtrl.isLoadingCats.value) {
+                return Container();
+              }
+              return Column(
+                children: List.generate(
+                  subCats.length,
+                  (index) => SubCategorySlider(subCats: subCats[index]),
                 ),
-              ],
-            )
+              );
+            })
           ],
         ),
       ),

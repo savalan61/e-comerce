@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/product_cart/product_cart_vertical.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/shop/models/category_mode.dart';
 
 import '../../../../../common/widgets/brands/brand_show_case.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 
 class TCategoryTab extends StatelessWidget {
-  const TCategoryTab({super.key, required this.isDark});
+  const TCategoryTab({super.key, required this.isDark, required this.categoryModel});
 
   final bool isDark;
+  final CategoryModel categoryModel;
 
   @override
   Widget build(BuildContext context) {

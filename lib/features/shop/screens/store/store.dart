@@ -6,6 +6,7 @@ import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/data/repositories/categories/category_controller.dart';
 import 'package:t_store/features/shop/screens/brands/all_brands.dart';
 import 'package:t_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -22,13 +23,13 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isDark = THelperFunctions.isDarkMode(context);
-
+    final catCtrl = CategoryController.instance;
     return DefaultTabController(
-      length: 5,
+      length: catCtrl.featuredCategories.length,
       child: Scaffold(
         appBar: TAppbar(
           title: Text('Store', style: Theme.of(context).textTheme.headlineMedium),
-          actions: [
+          actions: const [
             TCartCounterIcon(
               iconColor: TColors.white,
               counterBgColor: TColors.black,
@@ -85,25 +86,21 @@ class StoreScreen extends StatelessWidget {
 
                 /// Tabs
                 bottom: TTabBar(
-                  isDark: isDark,
-                  tabs: const [
-                    Tab(child: Text("Sport")),
-                    Tab(child: Text("Furniture")),
-                    Tab(child: Text("Electronics")),
-                    Tab(child: Text("Clothes")),
-                    Tab(child: Text("Cosmetics")),
-                  ],
-                ),
+                    isDark: isDark,
+                    tabs: List.generate(
+                      catCtrl.featuredCategories.length,
+                      (index) => Tab(child: Text(catCtrl.featuredCategories[index].name)),
+                    )),
               )
             ];
           },
-          body: TabBarView(children: [
-            TCategoryTab(isDark: isDark),
-            TCategoryTab(isDark: isDark),
-            TCategoryTab(isDark: isDark),
-            TCategoryTab(isDark: isDark),
-            TCategoryTab(isDark: isDark),
-          ]),
+          body: TabBarView(
+              children: List.generate(
+                  catCtrl.featuredCategories.length,
+                  (index) => TCategoryTab(
+                        isDark: isDark,
+                        categoryModel: catCtrl.featuredCategories[index],
+                      ))),
         ),
       ),
     );
