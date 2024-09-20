@@ -1,5 +1,3 @@
-# Create the content for the README file
-readme_content = """
 # T_Store - E-commerce App
 
 ![T_Store App Screenshot](https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_2_2024-09-20_16-16-20.jpg?alt=media&token=b5b61b2d-b5bd-4f9a-8a24-4796831d33a1)
@@ -12,7 +10,7 @@ The app is fully integrated with **Firebase Authentication** for secure user sig
 ## Key Features
 
 - **User Authentication**: Sign up, sign in, and manage user accounts using Firebase Authentication.
-- **Product Listing**: View dynamic product listings that are managed in Firebase Firestore.
+- **Product Listing**: View dynamic product listings managed in Firebase Firestore.
 - **Cart & Checkout**: Users can add products to their cart and proceed to secure checkout.
 - **Real-Time Updates**: Instant product updates, pricing changes, and stock management with Firebase Firestore.
 - **Secure Image Storage**: Product images and user data are securely stored using Firebase Storage.
@@ -23,6 +21,11 @@ The app is fully integrated with **Firebase Authentication** for secure user sig
 ![Screenshot 1](https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_5_2024-09-20_16-16-20.jpg?alt=media&token=6c06ec6a-3fc4-49f8-994b-75a5a00902d6)
 ![Screenshot 2](https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_4_2024-09-20_16-16-20.jpg?alt=media&token=ce022f5d-571c-4290-b1ed-42351818761d)
 ![Screenshot 3](https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_3_2024-09-20_16-16-20.jpg?alt=media&token=dfe6a76f-95df-4937-bf8c-8acf445a9674)
+
+### Screenshot Files
+- `photo_5_2024-09-20_16-16-20.jpg`: Cart and product listing view.
+- `photo_4_2024-09-20_16-16-20.jpg`: Checkout page.
+- `photo_3_2024-09-20_16-16-20.jpg`: User profile and settings.
 
 ## Getting Started
 
