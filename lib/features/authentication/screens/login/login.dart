@@ -28,14 +28,14 @@ class LoginScreen extends StatelessWidget {
               TLoginForm(),
 
               /// Divider
-              TFormDivider(dividerText: TTexts.orSignInWith.capitalize!),
+              // TFormDivider(dividerText: TTexts.orSignInWith.capitalize!),
 
               SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
 
               ///Footer
-              TSocialButtons()
+              // TSocialButtons()
             ],
           ),
         ),
