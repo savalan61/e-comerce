@@ -1,3 +1,5 @@
+![T_Store App Screenshot](https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_2_2024-09-20_16-16-20.jpg?alt=media&token=b5b61b2d-b5bd-4f9a-8a24-4796831d33a1)
+
 ## Overview
 **T_Store** is a cross-platform mobile e-commerce application built using **Flutter** for the frontend and **Firebase** for the backend. It provides users with a smooth and efficient shopping experience, from browsing products to completing orders, all in real-time.
 
