@@ -1,7 +1,3 @@
-E-commerce App
-  
-<img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_2_2024-09-20_16-16-20.jpg?alt=media&token=b5b61b2d-b5bd-4f9a-8a24-4796831d33a1" alt="T_Store App Screenshot" style="width: 200px; border-radius: 8px;">
-
 ## Overview
 **T_Store** is a cross-platform mobile e-commerce application built using **Flutter** for the frontend and **Firebase** for the backend. It provides users with a smooth and efficient shopping experience, from browsing products to completing orders, all in real-time.
 
@@ -18,12 +14,10 @@ The app is fully integrated with **Firebase Authentication** for secure user sig
 
 ## Screenshots
 
-<div style="width: 100%; overflow: hidden;">
-    <div style="display: flex; transition: transform 0.5s;">
-        <img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_5_2024-09-20_16-16-20.jpg?alt=media&token=6c06ec6a-3fc4-49f8-994b-75a5a00902d6" alt="Screenshot 1" style="width: 100%; max-width: 600px; border-radius: 8px;">
-        <img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_4_2024-09-20_16-16-20.jpg?alt=media&token=ce022f5d-571c-4290-b1ed-42351818761d" alt="Screenshot 2" style="width: 100%; max-width: 600px; border-radius: 8px;">
-        <img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_3_2024-09-20_16-16-20.jpg?alt=media&token=dfe6a76f-95df-4937-bf8c-8acf445a9674" alt="Screenshot 3" style="width: 100%; max-width: 600px; border-radius: 8px;">
-    </div>
+<div style="display: flex; justify-content: space-around;">
+    <img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_5_2024-09-20_16-16-20.jpg?alt=media&token=6c06ec6a-3fc4-49f8-994b-75a5a00902d6" alt="Screenshot 1" style="width: 30%; border-radius: 8px;">
+    <img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_4_2024-09-20_16-16-20.jpg?alt=media&token=ce022f5d-571c-4290-b1ed-42351818761d" alt="Screenshot 2" style="width: 30%; border-radius: 8px;">
+    <img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_3_2024-09-20_16-16-20.jpg?alt=media&token=dfe6a76f-95df-4937-bf8c-8acf445a9674" alt="Screenshot 3" style="width: 30%; border-radius: 8px;">
 </div>
 
 ### Screenshot Files
