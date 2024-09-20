@@ -18,9 +18,11 @@ The app is fully integrated with **Firebase Authentication** for secure user sig
 
 ## Screenshots
 
-![Screenshot 1](https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_5_2024-09-20_16-16-20.jpg?alt=media&token=6c06ec6a-3fc4-49f8-994b-75a5a00902d6)
-![Screenshot 2](https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_4_2024-09-20_16-16-20.jpg?alt=media&token=ce022f5d-571c-4290-b1ed-42351818761d)
-![Screenshot 3](https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_3_2024-09-20_16-16-20.jpg?alt=media&token=dfe6a76f-95df-4937-bf8c-8acf445a9674)
+<div style="display: flex; justify-content: space-around;">
+    <img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_5_2024-09-20_16-16-20.jpg?alt=media&token=6c06ec6a-3fc4-49f8-994b-75a5a00902d6" alt="Screenshot 1" style="width: 30%; border-radius: 8px;">
+    <img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_4_2024-09-20_16-16-20.jpg?alt=media&token=ce022f5d-571c-4290-b1ed-42351818761d" alt="Screenshot 2" style="width: 30%; border-radius: 8px;">
+    <img src="https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_3_2024-09-20_16-16-20.jpg?alt=media&token=dfe6a76f-95df-4937-bf8c-8acf445a9674" alt="Screenshot 3" style="width: 30%; border-radius: 8px;">
+</div>
 
 ### Screenshot Files
 - `photo_5_2024-09-20_16-16-20.jpg`: Cart and product listing view.
