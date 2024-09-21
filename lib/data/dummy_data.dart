@@ -3,17 +3,17 @@ import '../features/shop/models/category_mode.dart';
 import '../utils/constants/image_strings.dart';
 
 class TDummyData {
-  // Banners
-  // static final List<BannerModel> banners = [
-  //   BannerModel(imageURL: TImages.banner1, targetScreen: TRoutes.order, active: false),
-  //   BannerModel(imageURL: TImages.banner2, targetScreen: TRoutes.cart, active: true),
-  //   BannerModel(imageURL: TImages.banner3, targetScreen: TRoutes.favourites, active: true),
-  //   BannerModel(imageURL: TImages.banner4, targetScreen: TRoutes.search, active: true),
-  //   BannerModel(imageURL: TImages.banner5, targetScreen: TRoutes.settings, active: true),
-  //   BannerModel(imageURL: TImages.banner6, targetScreen: TRoutes.userAddress, active: true),
-  //   BannerModel(imageURL: TImages.banner7, targetScreen: TRoutes.checkout, active: false),
-  //   BannerModel(imageURL: TImages.banner8, targetScreen: TRoutes.order, active: true),
-  // ];
+//   // Banners
+//   static final List<BannerModel> banners = [
+//     BannerModel(imageURL: TImages.banner1, targetScreen: "/order", active: false),
+//     BannerModel(imageURL: TImages.banner2, targetScreen: "/cart", active: true),
+//     BannerModel(imageURL: TImages.banner3, targetScreen: "/favourites", active: true),
+//     BannerModel(imageURL: TImages.banner4, targetScreen: "/search", active: true),
+//     BannerModel(imageURL: TImages.banner5, targetScreen: "/settings", active: true),
+//     BannerModel(imageURL: TImages.banner6, targetScreen: "/userAddress", active: true),
+//     BannerModel(imageURL: TImages.banner7, targetScreen: "/checkout", active: false),
+//     BannerModel(imageURL: TImages.banner8, targetScreen: "/order", active: true),
+//   ];
 
   // User
   static final UserModel user = UserModel(
@@ -116,17 +116,28 @@ class TDummyData {
   ];
 }
 
-class BannerModel {
-  final String imageURL;
-  final String targetScreen;
-  final bool active;
-
-  BannerModel({
-    required this.imageURL,
-    required this.targetScreen,
-    required this.active,
-  });
-}
+// class BannerModel {
+//   String imageURL;
+//   String targetScreen;
+//   bool active;
+//   String? imageUrl;
+//
+//   BannerModel({
+//     required this.imageURL,
+//     required this.targetScreen,
+//     required this.active,
+//     this.imageUrl,
+//   });
+//
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'imageURL': imageURL,
+//       'targetScreen': targetScreen,
+//       'active': active,
+//       'imageUrl': imageUrl,
+//     };
+//   }
+// }
 
 class CartModel {
   final String cartID;

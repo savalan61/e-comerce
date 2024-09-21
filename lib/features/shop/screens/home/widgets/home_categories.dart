@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/shimmer/category_shimmer.dart';
-import 'package:t_store/data/repositories/categories/category_controller.dart';
+import 'package:t_store/features/shop/controllers/category_controller.dart';
 import 'package:t_store/features/shop/screens/subCategories/sub_categories.dart';
 
 import '../../../../../common/widgets/img_text_widget/vertical_image_text.dart';

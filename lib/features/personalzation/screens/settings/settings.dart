@@ -11,8 +11,6 @@ import 'package:t_store/features/shop/screens/order/order.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/list_tiles/user_profile_tile.dart';
-import '../../../../data/dummy_data.dart';
-import '../../../../data/repositories/categories/category_repository.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
@@ -97,8 +95,8 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Load Data',
                     subTitle: 'Upload Data to your Cloud Firebase',
                     onTap: () {
-                      final catCtrl = CategoryRepository.instance;
-                      catCtrl.uploadDummyData(TDummyData.jewelryCategories);
+                      // final catCtrl = Get.put(BannerRepository());
+                      // catCtrl.uploadDummyData(TDummyData.banners);
                     },
                   ),
 

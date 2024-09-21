@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/sizes.dart';
@@ -17,6 +18,7 @@ class TRoundedImage extends StatelessWidget {
     this.onPressed,
     this.borderRadius = TSizes.md,
   });
+
   final double? width, height;
   final String imageUrl;
   final bool applyImageRadius;
@@ -27,6 +29,7 @@ class TRoundedImage extends StatelessWidget {
   final bool isNetworkImage;
   final VoidCallback? onPressed;
   final double borderRadius;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -36,15 +39,21 @@ class TRoundedImage extends StatelessWidget {
         height: height,
         padding: padding,
         decoration: BoxDecoration(
-            border: border, borderRadius: BorderRadius.circular(borderRadius), color: bgColor),
+          border: border,
+          borderRadius: BorderRadius.circular(borderRadius),
+          color: bgColor,
+        ),
         child: ClipRRect(
-            borderRadius:
-                applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
-            child: Image(
-              image:
-                  isNetworkImage ? NetworkImage(imageUrl) : AssetImage(imageUrl) as ImageProvider,
-              fit: fit,
-            )),
+          borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  fit: fit,
+                  placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image.asset(imageUrl, fit: fit),
+        ),
       ),
     );
   }
