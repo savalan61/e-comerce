@@ -3,6 +3,7 @@ import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/product_cart/product_cart_vertical.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/models/category_mode.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 
 import '../../../../../common/widgets/brands/brand_show_case.dart';
 import '../../../../../utils/constants/image_strings.dart';
@@ -47,7 +48,7 @@ class TCategoryTab extends StatelessWidget {
                 onPressed: () {},
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
-              TGridLayout(itemCount: 4, itemBuilder: (p0, index) => const TProductCartVertical())
+              TGridLayout(itemCount: 4, itemBuilder: (p0, index) => TProductCartVertical(product: ProductModel.empty()))
             ],
           ),
         )

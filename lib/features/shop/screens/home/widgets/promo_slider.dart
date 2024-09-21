@@ -39,7 +39,7 @@ class TPromoSlider extends StatelessWidget {
                         imageUrl: e.imageURL,
                         isNetworkImage: true,
                         onPressed: () {
-                          Get.toNamed(e.targetScreen);
+                          // Get.toNamed(e.targetScreen);
                         },
                       ))
                   .toList(),

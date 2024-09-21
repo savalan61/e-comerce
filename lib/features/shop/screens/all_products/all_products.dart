@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
+import 'package:t_store/features/shop/controllers/product_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 import '../../../../common/widgets/products/sortable/sortable_products.dart';
@@ -11,6 +12,8 @@ class AllProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final prods = ProductController.instance.allProducts;
+
     return Scaffold(
       appBar: TAppbar(
         title: Text("Popular Products"),
@@ -19,7 +22,9 @@ class AllProductsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
-          child: TSortableProducts(),
+          child: TSortableProducts(
+            product: prods[0],
+          ),
         ),
       ),
     );

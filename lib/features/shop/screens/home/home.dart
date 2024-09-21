@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/common/widgets/custome_shimmer/custome_shimmer.dart';
+import 'package:t_store/features/shop/controllers/product_controller.dart';
 import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_categories.dart';
@@ -20,6 +22,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productCtrl = Get.put(ProductController());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -58,7 +62,7 @@ class HomeScreen extends StatelessWidget {
 
             ///Body
             Padding(
-              padding: const EdgeInsets.all(TSizes.defaultSpace),
+              padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
               child: Column(
                 children: [
                   /// Slider
@@ -72,7 +76,20 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: TSizes.spaceBtwSections),
 
                   ///popular products
-                  TGridLayout(itemCount: 10, itemBuilder: (_, index) => TProductCartVertical())
+                  Obx(() {
+                    if (productCtrl.isLoading.value == true) {
+                      return TShimmerEffect(width: double.infinity, height: 200);
+                    }
+                    if (productCtrl.allProducts.isEmpty) {
+                      return Text("No Data Found!");
+                    } else {
+                      return TGridLayout(
+                          itemCount: productCtrl.allProducts.length,
+                          itemBuilder: (_, index) => TProductCartVertical(
+                                product: productCtrl.allProducts[index],
+                              ));
+                    }
+                  })
                 ],
               ),
             ),

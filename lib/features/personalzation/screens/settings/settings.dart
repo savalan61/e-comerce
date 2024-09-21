@@ -11,6 +11,8 @@ import 'package:t_store/features/shop/screens/order/order.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/list_tiles/user_profile_tile.dart';
+import '../../../../data/dummy_data.dart';
+import '../../../../data/repositories/product/product_repository.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
@@ -95,8 +97,8 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Load Data',
                     subTitle: 'Upload Data to your Cloud Firebase',
                     onTap: () {
-                      // final catCtrl = Get.put(BannerRepository());
-                      // catCtrl.uploadDummyData(TDummyData.banners);
+                      ///TODO
+                      uploadProducts();
                     },
                   ),
 
@@ -138,3 +140,62 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 }
+
+void uploadProducts() async {
+  print("//////////////////////////////");
+  try {
+    await uploadDummyData(TDummyData.products);
+    print("Products uploaded successfully!");
+  } catch (e) {
+    print("Error uploading products: $e");
+  }
+}
+
+//
+// Future<void> sendToFirebase(List<ProductModel> dummyData) async {
+//   CollectionReference brandCategoriesRef = FirebaseFirestore.instance.collection('Products');
+//
+//   for (var brandCategory in dummyData) {
+//     try {
+//       await brandCategoriesRef.add(brandCategory.toJson());
+//     } catch (e) {
+//       print(' ************* Error:$e');
+//     }
+//   }
+// }
+
+// Future<void> uploadProducts(List<ProductModel> products) async {
+//   final db = FirebaseFirestore.instance;
+//   final storage = Get.put(TFirebaseStorageService());
+//
+//   try {
+//     for (var product in products) {
+//       // دریافت URL تصویر thumbnail
+//       final file = await storage.getImageDataFromAssets(product.thumbnail);
+//       final thumbnailUrl = await storage.uploadImageData("Products", file, product.title);
+//
+//       // به‌روزرسانی thumbnail به URL
+//       product.thumbnail = thumbnailUrl;
+//
+//       // برای هر تصویر در product.images
+//       List<String> imageUrls = [];
+//       for (var image in product.images ?? []) {
+//         final imageFile = await storage.getImageDataFromAssets(image);
+//         final imageUrl = await storage.uploadImageData("Products", imageFile, product.title);
+//         imageUrls.add(imageUrl);
+//       }
+//
+//       // به‌روزرسانی لیست تصاویر
+//       product.images = imageUrls;
+//
+//       // افزودن محصول به Firestore
+//       await db.collection("Products").add(product.toJson());
+//     }
+//   } on FirebaseException catch (e) {
+//     throw TFirebaseException(e.code).message;
+//   } on PlatformException catch (e) {
+//     throw TPlatformException(e.code).message;
+//   } catch (e) {
+//     throw 'Error uploading products: $e';
+//   }
+// }

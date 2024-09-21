@@ -7,26 +7,30 @@ import 'package:t_store/common/styles/shadows.dart';
 import 'package:t_store/common/widgets/images/t_rounded_image.dart';
 import 'package:t_store/common/widgets/texts/product_price_text.dart';
 import 'package:t_store/common/widgets/texts/product_title_text.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/product_details/product_detail.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
-import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../custom_shapes/containers/rounded_container.dart';
 import '../../icons/t_circular_icon.dart';
 import '../../texts/t_brand_title_text_with_verified_icon.dart';
 
 class TProductCartVertical extends StatelessWidget {
-  const TProductCartVertical({super.key});
+  const TProductCartVertical({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     final bool isDark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetail());
+        Get.to(() => ProductDetail(
+              product: product,
+            ));
       },
       child: Container(
         width: 180,
@@ -49,9 +53,10 @@ class TProductCartVertical extends StatelessWidget {
                   TRoundedImage(
                     /// my cod..........................
                     width: double.infinity,
+                    isNetworkImage: true,
 
                     ///**************************************
-                    imageUrl: TImages.productImage1,
+                    imageUrl: product.thumbnail,
                     applyImageRadius: true,
                   ),
                   Positioned(
@@ -60,18 +65,12 @@ class TProductCartVertical extends StatelessWidget {
                         radius: TSizes.sm,
                         backGroundColor: TColors.secondary.withOpacity(.8),
                         padding: EdgeInsets.symmetric(vertical: TSizes.xs, horizontal: TSizes.sm),
-                        child: Text('%25',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge!
-                                .apply(color: TColors.black)),
+                        child: Text(product.salePrice.toStringAsFixed(0),
+                            style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
                       )),
 
                   /// Favorite Icon button
-                  Positioned(
-                      top: 0,
-                      right: 0,
-                      child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red))
+                  Positioned(top: 0, right: 0, child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red))
                 ],
               ),
             ),
@@ -83,10 +82,10 @@ class TProductCartVertical extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TProductTitleText(title: 'Green Nike Air Shoe', smallSize: true),
+                  TProductTitleText(title: product.title, smallSize: true),
                   SizedBox(height: TSizes.spaceBtwItems / 2),
                   TBrandTitleWithVerifiedIcon(
-                    title: 'Nike',
+                    title: product.brand?.name ?? "",
                     brandTextSize: TextSizes.large,
                   ),
                 ],
@@ -98,7 +97,7 @@ class TProductCartVertical extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: TSizes.sm),
-                  child: TProductPriceText(price: '35.5'),
+                  child: TProductPriceText(price: product.price.toStringAsFixed(2)),
                 ),
                 Container(
                   decoration: BoxDecoration(

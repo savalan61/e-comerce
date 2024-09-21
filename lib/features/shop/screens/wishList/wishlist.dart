@@ -8,6 +8,8 @@ import 'package:t_store/common/widgets/products/product_cart/product_cart_vertic
 import 'package:t_store/features/shop/screens/home/home.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
+import '../../models/product_model.dart';
+
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
 
@@ -32,7 +34,9 @@ class WishlistScreen extends StatelessWidget {
             children: [
               TGridLayout(
                 itemCount: 8,
-                itemBuilder: (_, index) => const TProductCartVertical(),
+                itemBuilder: (_, index) => TProductCartVertical(
+                  product: ProductModel.empty(),
+                ),
               )
             ],
           ),

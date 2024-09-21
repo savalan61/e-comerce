@@ -57,8 +57,8 @@ class TImages {
   static const String productImage6 = "assets/images/products/product-slippers.png";
   static const String productImage7 = "assets/images/products/NikeAirJOrdonBlackRed.png";
   static const String productImage8 = "assets/images/products/NikeAirJOrdonOrange.png";
-  static const String productImage9 = "assets/images/products/NikeAirJordonwhiteMagenta.png";
-  static const String productImage10 = "assets/images/products/NikeAirJOrdonWhiteRed.png";
+  static const String productImage9 = "assets/images/products/NikeAirJordonSingleBlue.png";
+  static const String productImage10 = "assets/images/products/NikeAirJordonSingleOrange.png";
   static const String productImage11 = "assets/images/products/samsung_s9_mobile.png";
   static const String productImage12 = "assets/images/products/samsung_s9_mobile_withback.png";
   static const String productImage13 = "assets/images/products/samsung_s9_mobile_back.png";
@@ -85,7 +85,7 @@ class TImages {
   static const String productImage34 = "assets/images/products/bedroom_sofa.png";
   static const String productImage35 = "assets/images/products/bedroom_wardrobe.png";
   static const String productImage36 = "assets/images/products/kitchen_counter.png";
-  static const String productImage37 = "assets/images/products/kitchen_dining table.png";
+  static const String productImage37 = "assets/images/products/kitchen_dining_table.png";
   static const String productImage38 = "assets/images/products/kitchen_refrigerator.png";
   static const String productImage39 = "assets/images/products/office_chair_1.png";
   static const String productImage40 = "assets/images/products/office_chair_2.png";
