@@ -65,4 +65,9 @@ class VariationController extends GetxController {
     variationStockStatus.value = '';
     selectedVariation.value = ProductVariationModel.empty();
   }
+
+  String getVariationPrice() {
+    return (selectedVariation.value.salePrice > 0 ? selectedVariation.value.salePrice : selectedVariation.value.price)
+        .toString();
+  }
 }

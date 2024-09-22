@@ -24,101 +24,101 @@ class TProductAttributes extends StatelessWidget {
     final attCtrl = Get.put(VariationController());
     final bool isDark = THelperFunctions.isDarkMode(context);
 
-    return Column(
-      children: [
-        if (attCtrl.selectedVariation.value.id.isNotEmpty)
-          TRoundedContainer(
-            padding: const EdgeInsets.all(TSizes.md),
-            backGroundColor: isDark ? TColors.darkGrey : TColors.grey,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    const TSectionHeading(title: 'Variation', showActionButton: false),
-                    const SizedBox(width: TSizes.spaceBtwItems),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const TProductTitleText(title: 'Price : ', smallSize: true),
-                            if (product.productType == ProductType.single)
+    return Obx(() {
+      return Column(
+        children: [
+          if (attCtrl.selectedVariation.value.id.isNotEmpty)
+            TRoundedContainer(
+              padding: const EdgeInsets.all(TSizes.md),
+              backGroundColor: isDark ? TColors.darkGrey : TColors.grey,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const TSectionHeading(title: 'Variation', showActionButton: false),
+                      const SizedBox(width: TSizes.spaceBtwItems),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const TProductTitleText(title: 'Price : ', smallSize: true),
+                              if (attCtrl.selectedVariation.value.salePrice > 0)
+                                Text(
+                                  '\$${attCtrl.selectedVariation.value.price}',
+                                  style: Theme.of(context).textTheme.titleSmall!.apply(
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                                ),
+                              const SizedBox(width: TSizes.spaceBtwItems),
+                              TProductPriceText(price: attCtrl.getVariationPrice()),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const TProductTitleText(title: 'Stock : ', smallSize: true),
                               Text(
-                                '\$${product.price}',
-                                style: Theme.of(context).textTheme.titleSmall!.apply(
-                                      decoration: TextDecoration.lineThrough,
-                                    ),
+                                attCtrl.variationStockStatus.value,
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
-                            const SizedBox(width: TSizes.spaceBtwItems),
-                            TProductPriceText(price: prodCtrl.getProductPrice(product)),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const TProductTitleText(title: 'Stock : ', smallSize: true),
-                            Text(
-                              attCtrl.variationStockStatus.value,
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const TProductTitleText(
-                  title: "This is the description of this product max is 4 and not more be carry and happy.",
-                  maxLine: 4,
-                  smallSize: true,
-                )
-              ],
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const TProductTitleText(
+                    title: "This is the description of this product max is 4 and not more be carry and happy.",
+                    maxLine: 4,
+                    smallSize: true,
+                  ),
+                ],
+              ),
             ),
-          ),
-        const SizedBox(height: TSizes.spaceBtwItems),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: List.generate(
-              product.productAttributes!.length,
-              (index) => Column(
+          const SizedBox(height: TSizes.spaceBtwItems),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: product.productAttributes!
+                .map(
+                  (attribute) => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TSectionHeading(
-                        title: product.productAttributes![index].name!,
+                        title: attribute.name!,
                         showActionButton: false,
                       ),
-                      const SizedBox(height: TSizes.spaceBtwItems / 2),
-                      Obx(() {
-                        return Wrap(
-                          spacing: 8,
-                          children: List.generate(product.productAttributes![index].values!.length, (i) {
-                            final isSelected = attCtrl.selectedAttributes[product.productAttributes![index].name!] ==
-                                product.productAttributes![index].values![i];
-                            final available = attCtrl
-                                .getAttributesAvailabilityInVariation(
-                                    product.productVariations!, product.productAttributes![index].name!)
-                                .contains(product.productAttributes![index].values![i]);
+                      Wrap(
+                        spacing: 8,
+                        children: attribute.values!.map((value) {
+                          final isSelected = attCtrl.selectedAttributes[attribute.name!] == value;
+                          final available = attCtrl
+                              .getAttributesAvailabilityInVariation(product.productVariations!, attribute.name!)
+                              .contains(value);
 
-                            return TChoiceChip(
-                              label: product.productAttributes![index].values![i],
-                              selected: isSelected,
-                              onSelected: available
-                                  ? (selected) {
-                                      attCtrl.onAttributeSelected(
-                                        product,
-                                        product.productAttributes![index].name!,
-                                        product.productAttributes![index].values![i],
-                                      );
-                                    }
-                                  : null,
-                            );
-                          }),
-                        );
-                      }),
+                          return TChoiceChip(
+                            label: value,
+                            selected: isSelected,
+                            onSelected: available
+                                ? (selected) {
+                                    attCtrl.onAttributeSelected(
+                                      product,
+                                      attribute.name!,
+                                      value,
+                                    );
+                                  }
+                                : null,
+                          );
+                        }).toList(),
+                      ),
+                      const SizedBox(height: TSizes.spaceBtwItems / 2),
                     ],
-                  )),
-        ),
-        const SizedBox(height: TSizes.spaceBtwSections),
-      ],
-    );
+                  ),
+                )
+                .toList(),
+          ),
+          const SizedBox(height: TSizes.spaceBtwSections),
+        ],
+      );
+    });
   }
 }
