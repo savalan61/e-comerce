@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:t_store/common/widgets/texts/product_price_text.dart';
 import 'package:t_store/common/widgets/texts/product_title_text.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
-import 'package:t_store/features/shop/controllers/product%20controller/product_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
@@ -20,7 +19,7 @@ class TProductAttributes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final prodCtrl = ProductController.instance;
+    // final prodCtrl = ProductController.instance;
     final attCtrl = Get.put(VariationController());
     final bool isDark = THelperFunctions.isDarkMode(context);
 
@@ -67,8 +66,8 @@ class TProductAttributes extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const TProductTitleText(
-                    title: "This is the description of this product max is 4 and not more be carry and happy.",
+                  TProductTitleText(
+                    title: attCtrl.selectedVariation.value.description ?? "",
                     maxLine: 4,
                     smallSize: true,
                   ),
