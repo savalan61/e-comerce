@@ -15,7 +15,7 @@ class CategoryShimmer extends StatelessWidget {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               TShimmerEffect(
                 width: 55,
                 height: 55,
@@ -27,6 +27,7 @@ class CategoryShimmer extends StatelessWidget {
                 height: 8,
               ),
             ]);
+            return null;
           },
           separatorBuilder: (context, index) => const SizedBox(
                 width: TSizes.spaceBtwItems,

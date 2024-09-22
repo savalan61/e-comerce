@@ -30,7 +30,7 @@ class ProductDetail extends StatelessWidget {
         child: Column(
           children: [
             /// 1- product Image slider
-            TProductImageSlider(),
+            TProductImageSlider(product: product),
 
             /// 2 - Product Details
             Padding(
@@ -42,10 +42,10 @@ class ProductDetail extends StatelessWidget {
                   TRatingAndShare(),
 
                   ///Price, title, stock, brand
-                  TProductMetadata(),
+                  TProductMetadata(product: product),
 
                   ///Attributes
-                  TProductAttributes(),
+                  if (product.productType == ProductType.variable) TProductAttributes(product: product),
 
                   ///Checkout Button
                   SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child: Text("Checkout"))),
@@ -55,7 +55,8 @@ class ProductDetail extends StatelessWidget {
                   TSectionHeading(title: "Description", showActionButton: false),
                   SizedBox(height: TSizes.spaceBtwItems),
                   ReadMoreText(
-                    "About Amara Properties: Amara Properties is a professional real estate company assisting clients in finding their ideal home. For the past 8 years, we have been providing consultancy services for Real Estate, Investment, Residence, and Citizenship. We are dedicated to assisting foreign buyers with suitable housing options in Turkey and identifying profitable investment opportunities.Job Title: Property Consultant Location: Istanbul, Turkey Position Type: Full-Time",
+                    product.description ?? "No Description.",
+                    textAlign: TextAlign.left,
                     trimLines: 2,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: "Show more...",

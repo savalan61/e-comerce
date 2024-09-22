@@ -15,7 +15,7 @@ class TProdQuantityAddRemoveButton extends StatelessWidget {
     return Row(
       // mainAxisSize: MainAxisSize.min,
       children: [
-        TCircularIcon(
+        const TCircularIcon(
           icon: Iconsax.minus,
           width: 32,
           height: 32,
@@ -23,10 +23,10 @@ class TProdQuantityAddRemoveButton extends StatelessWidget {
           color: TColors.white,
           bgColor: TColors.primary,
         ),
-        SizedBox(width: TSizes.spaceBtwItems),
+        const SizedBox(width: TSizes.spaceBtwItems),
         Text("2", style: Theme.of(context).textTheme.titleSmall),
-        SizedBox(width: TSizes.spaceBtwItems),
-        TCircularIcon(
+        const SizedBox(width: TSizes.spaceBtwItems),
+        const TCircularIcon(
           icon: Iconsax.add,
           width: 32,
           height: 32,

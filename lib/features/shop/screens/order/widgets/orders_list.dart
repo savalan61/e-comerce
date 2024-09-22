@@ -41,11 +41,10 @@ class TOrdersListItems extends StatelessWidget {
                           ],
                         ),
                       ),
-                      IconButton(
-                          onPressed: () {}, icon: Icon(Iconsax.arrow_right_34, size: TSizes.iconSm))
+                      IconButton(onPressed: () {}, icon: const Icon(Iconsax.arrow_right_34, size: TSizes.iconSm))
                     ],
                   ),
-                  SizedBox(height: TSizes.spaceBtwItems),
+                  const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// Row 2
                   Row(
@@ -78,10 +77,8 @@ class TOrdersListItems extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Shipping date",
-                                      style: Theme.of(context).textTheme.labelMedium),
-                                  Text("12 Feb 2024",
-                                      style: Theme.of(context).textTheme.titleMedium),
+                                  Text("Shipping date", style: Theme.of(context).textTheme.labelMedium),
+                                  Text("12 Feb 2024", style: Theme.of(context).textTheme.titleMedium),
                                 ],
                               ),
                             ),

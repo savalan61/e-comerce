@@ -16,7 +16,7 @@ class ProductRepository extends GetxController {
 
   Future<List<ProductModel>> getAllProducts() async {
     try {
-      final snapshot = await _db.collection('Products').where("IsFeatured", isEqualTo: true).get();
+      final snapshot = await _db.collection('ProductsNew').where("IsFeatured", isEqualTo: true).get();
       final products = snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
       return products;
     } on FirebaseException catch (e) {
@@ -44,22 +44,27 @@ Future<void> uploadDummyData(List<ProductModel> products) async {
         List<String> imagesUrl = [];
         for (var image in product.images!) {
           final assetImage = await storage.getImageDataFromAssets(image);
-          final url = await storage.uploadImageData('Products/Images', assetImage, image.split('/').last);
+          final url = await storage.uploadImageData('images/products', assetImage, image.split('/').last);
           imagesUrl.add(url);
         }
         product.images!.clear();
         product.images!.addAll(imagesUrl);
       }
+      if (product.brand != null) {
+        final brandImage = await storage.getImageDataFromAssets(product.brand!.image);
+        final brandImageUrl = await storage.uploadImageData('BrandsNew', brandImage, product.brand!.name);
+        product.brand!.image = brandImageUrl;
+      }
 
       if (product.productType == ProductType.variable && product.productVariations != null) {
         for (var variation in product.productVariations!) {
           final assetImage = await storage.getImageDataFromAssets(variation.image);
-          final url = await storage.uploadImageData('Products/Images', assetImage, variation.image.split('/').last);
+          final url = await storage.uploadImageData('images/products', assetImage, variation.image.split('/').last);
           variation.image = url;
         }
       }
 
-      await db.collection("Products").doc(product.id).set(product.toJson());
+      await db.collection("ProductsNew").doc(product.id).set(product.toJson());
     }
   } on FirebaseException catch (e) {
     throw "Firebase Exception: ${e.message}";

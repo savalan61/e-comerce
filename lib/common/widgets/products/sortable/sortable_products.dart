@@ -16,7 +16,7 @@ class TSortableProducts extends StatelessWidget {
     return Column(
       children: [
         DropdownButtonFormField(
-          decoration: InputDecoration(prefixIcon: Icon(Iconsax.sort)),
+          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.sort)),
           items: ["Name", "Higher price", "Lower price", "Sale", "Newest", "Popularity"]
               .map((e) => DropdownMenuItem(
                     value: e,
@@ -25,7 +25,7 @@ class TSortableProducts extends StatelessWidget {
               .toList(),
           onChanged: (value) {},
         ),
-        SizedBox(height: TSizes.spaceBtwSections),
+        const SizedBox(height: TSizes.spaceBtwSections),
         TGridLayout(
           itemCount: 4,
           itemBuilder: (p0, index) => TProductCartVertical(

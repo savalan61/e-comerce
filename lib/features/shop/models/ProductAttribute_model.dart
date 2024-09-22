@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 class ProductAttributeModel {
   String? name;
   final List<String>? values;

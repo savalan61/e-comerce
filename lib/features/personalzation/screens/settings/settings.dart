@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -59,7 +60,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.safe_home,
                     title: 'My Addresses',
                     subTitle: 'Set shopping delivery address',
-                    onTap: () => Get.to(() => UserAddressScreen()),
+                    onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
                   const TSettingsMenuTile(
                       icon: Iconsax.shopping_cart,
@@ -69,7 +70,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.bag_tick,
                     title: 'My Orders',
                     subTitle: 'In-progress and Completed Orders',
-                    onTap: () => Get.to(() => OrderScreen()),
+                    onTap: () => Get.to(() => const OrderScreen()),
                   ),
                   const TSettingsMenuTile(
                       icon: Iconsax.bank,
@@ -142,12 +143,18 @@ class SettingsScreen extends StatelessWidget {
 }
 
 void uploadProducts() async {
-  print("//////////////////////////////");
+  if (kDebugMode) {
+    print("//////////////////////////////");
+  }
   try {
     await uploadDummyData(TDummyData.products);
-    print("Products uploaded successfully!");
+    if (kDebugMode) {
+      print("Products uploaded successfully!");
+    }
   } catch (e) {
-    print("Error uploading products: $e");
+    if (kDebugMode) {
+      print("Error uploading products: $e");
+    }
   }
 }
 

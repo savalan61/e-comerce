@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/custome_shimmer/custome_shimmer.dart';
-import 'package:t_store/features/shop/controllers/product_controller.dart';
+import 'package:t_store/features/shop/controllers/product%20controller/product_controller.dart';
 import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_categories.dart';
@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
 
             ///Body
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
+              padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace / 2),
               child: Column(
                 children: [
                   /// Slider

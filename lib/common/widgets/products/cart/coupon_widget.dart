@@ -17,13 +17,12 @@ class TCouponCode extends StatelessWidget {
     return TRoundedContainer(
       showBorder: true,
       backGroundColor: isDark ? TColors.dark : TColors.white,
-      padding:
-          EdgeInsets.only(top: TSizes.sm, bottom: TSizes.sm, right: TSizes.sm, left: TSizes.md),
+      padding: const EdgeInsets.only(top: TSizes.sm, bottom: TSizes.sm, right: TSizes.sm, left: TSizes.md),
       child: Row(
         children: [
           Flexible(
             child: TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Have a promo cod? Enter here",
                 border: InputBorder.none,
                 focusedErrorBorder: InputBorder.none,
@@ -40,10 +39,9 @@ class TCouponCode extends StatelessWidget {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                       side: BorderSide(color: TColors.grey.withOpacity(.1)),
-                      foregroundColor:
-                          isDark ? TColors.white.withOpacity(0.5) : TColors.dark.withOpacity(.5),
+                      foregroundColor: isDark ? TColors.white.withOpacity(0.5) : TColors.dark.withOpacity(.5),
                       backgroundColor: Colors.grey.withOpacity(.5)),
-                  child: Text("Apply")))
+                  child: const Text("Apply")))
         ],
       ),
     );

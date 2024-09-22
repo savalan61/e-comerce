@@ -17,7 +17,6 @@ class TFirebaseStorageService extends GetxController {
       final Uint8List imageData = byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
       return imageData;
     } catch (e) {
-      print("Failed to load image data: $e");
       throw "Error loading  image data $e";
     }
   }

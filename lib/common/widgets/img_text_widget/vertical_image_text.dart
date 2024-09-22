@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../../utils/helpers/helper_functions.dart';
 import '../custome_shimmer/custome_shimmer.dart';
 
 class TVerticalImageText extends StatelessWidget {
@@ -37,7 +36,7 @@ class TVerticalImageText extends StatelessWidget {
               height: 56,
               padding: EdgeInsets.all(TSizes.sm),
               decoration: BoxDecoration(
-                color: backgroundColor ?? (THelperFunctions.isDarkMode(context) ? TColors.black : TColors.white),
+                color: backgroundColor ?? TColors.white,
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(

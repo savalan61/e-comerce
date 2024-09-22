@@ -15,17 +15,17 @@ class BrandProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      appBar: TAppbar(
+      appBar: const TAppbar(
         title: Text("Nike"),
         showBackArrow: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
               TBrandCard(isDark: isDark, showBorder: true),
-              SizedBox(height: TSizes.spaceBtwSections),
+              const SizedBox(height: TSizes.spaceBtwSections),
               TSortableProducts(
                 product: productModel,
               )

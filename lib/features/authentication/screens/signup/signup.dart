@@ -1,9 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:t_store/common/widgets/login_signup/form_divider.dart';
-import 'package:t_store/common/widgets/login_signup/social_buttons.dart';
 import 'package:t_store/features/authentication/screens/signup/widgets/signup_form.dart';
 
 import '../../../../utils/constants/sizes.dart';

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/loaders/loaders.dart';
 import 'package:t_store/common/widgets/sucsess_screen/sucsess_screen.dart';
@@ -52,6 +53,7 @@ class VerifyEmailController extends GetxController {
   }
 
   checkEmailVerificationStatus() async {
+    // ignore: avoid_print
     print("checkEmailVerificationStatus");
 
     final user = FirebaseAuth.instance.currentUser;
@@ -61,7 +63,9 @@ class VerifyEmailController extends GetxController {
           title: TTexts.yourAccountCreatedTitle,
           subTitle: TTexts.yourAccountCreatedSubTitle,
           onPressed: () {
-            print("success screen continue");
+            if (kDebugMode) {
+              print("success screen continue");
+            }
             AuthenticationRepository.instance.screenRedirect();
           }));
     }

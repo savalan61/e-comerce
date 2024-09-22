@@ -430,7 +430,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Color', values: ['White', 'Black']),
         ProductAttributeModel(name: 'Brightness Levels', values: ['3', '5']),
       ],
-      productType: ProductType.variable,
+      productType: ProductType.single,
     ),
     ProductModel(
       id: '015',

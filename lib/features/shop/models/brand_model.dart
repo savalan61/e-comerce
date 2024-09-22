@@ -48,7 +48,7 @@ class BrandModel {
 }
 
 Future<void> uploadDummyData(List<BrandModel> brands) async {
-  final _db = FirebaseFirestore.instance;
+  final db = FirebaseFirestore.instance;
 
   try {
     final storage = Get.put(TFirebaseStorageService());
@@ -59,7 +59,7 @@ Future<void> uploadDummyData(List<BrandModel> brands) async {
 
       ban.imageUrl = url;
 
-      await _db.collection("Brands").add(ban.toJson());
+      await db.collection("Brands").add(ban.toJson());
     }
   } on FirebaseException catch (e) {
     throw TFirebaseException(e.code).message;

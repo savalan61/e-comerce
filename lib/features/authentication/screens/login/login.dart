@@ -1,14 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:t_store/common/styles/spacing_style.dart';
-import 'package:t_store/common/widgets/login_signup/form_divider.dart';
-import 'package:t_store/common/widgets/login_signup/social_buttons.dart';
 import 'package:t_store/features/authentication/screens/login/widgets/Logine_header.dart';
 import 'package:t_store/features/authentication/screens/login/widgets/login_form.dart';
 import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -22,7 +18,7 @@ class LoginScreen extends StatelessWidget {
         child: Padding(
           padding: TSpacingStyle.paddingWithAppbarHeight,
           child: Column(
-            children: [
+            children: const [
               TLoginHeader(),
 
               TLoginForm(),
