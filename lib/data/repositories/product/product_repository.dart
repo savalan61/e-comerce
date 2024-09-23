@@ -81,15 +81,14 @@ Future<void> uploadDummyData(List<ProductModel> products) async {
 
     for (var product in products) {
       final thumbnail = await storage.getImageDataFromAssets(product.thumbnail);
-      final thumbnailUrl =
-          await storage.uploadImageData('images/products', thumbnail, product.thumbnail.split('/').last);
+      final thumbnailUrl = await storage.uploadImageData('products', thumbnail, product.thumbnail.split('/').last);
       product.thumbnail = thumbnailUrl;
 
       if (product.images != null && product.images!.isNotEmpty) {
         List<String> imagesUrl = [];
         for (var image in product.images!) {
           final assetImage = await storage.getImageDataFromAssets(image);
-          final url = await storage.uploadImageData('images/products', assetImage, image.split('/').last);
+          final url = await storage.uploadImageData('products', assetImage, image.split('/').last);
           imagesUrl.add(url);
         }
         product.images!.clear();
@@ -106,7 +105,7 @@ Future<void> uploadDummyData(List<ProductModel> products) async {
         for (var variation in product.productVariations!) {
           final variationImage = await storage.getImageDataFromAssets(variation.image);
           final variationImageUrl =
-              await storage.uploadImageData('images/products', variationImage, variation.image.split('/').last);
+              await storage.uploadImageData('products', variationImage, variation.image.split('/').last);
           variation.image = variationImageUrl;
         }
       }
