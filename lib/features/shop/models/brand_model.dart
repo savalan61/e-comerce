@@ -12,7 +12,6 @@ class BrandModel {
   String image;
   bool? isFeatured;
   int? productsCount;
-  String? imageUrl;
 
   BrandModel({
     required this.id,
@@ -20,7 +19,6 @@ class BrandModel {
     required this.image,
     this.isFeatured,
     this.productsCount,
-    this.imageUrl,
   });
 
   static BrandModel empty() => BrandModel(id: "", name: "", image: "");
@@ -42,7 +40,6 @@ class BrandModel {
       'image': image,
       'isFeatured': isFeatured,
       'productsCount': productsCount,
-      'imageUrl': imageUrl,
     };
   }
 }
@@ -55,9 +52,7 @@ Future<void> uploadDummyData(List<BrandModel> brands) async {
 
     for (var ban in brands) {
       final file = await storage.getImageDataFromAssets(ban.image);
-      final url = await storage.uploadImageData("Brands", file, ban.name);
-
-      ban.imageUrl = url;
+      // final url = await storage.uploadImageData("Brands", file, ban.name);
 
       await db.collection("Brands").add(ban.toJson());
     }

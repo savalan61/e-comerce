@@ -23,7 +23,7 @@ class ProductModel {
   String? description;
   String? categoryId;
   List<String>? images;
-  ProductType productType; // تغییر نوع به ProductType
+  ProductType productType;
   List<ProductAttributeModel>? productAttributes;
   List<ProductVariationModel>? productVariations;
 
@@ -61,25 +61,23 @@ class ProductModel {
       'Description': description,
       'CategoryId': categoryId,
       'Images': images,
-      'ProductType': productType.toString().split('.').last, // به عنوان رشته
+      'ProductType': productType.toString().split('.').last,
       'ProductAttributes': productAttributes?.map((attr) => attr.toJson()).toList(),
       'ProductVariations': productVariations?.map((variation) => variation.toJson()).toList(),
     };
   }
 
-  factory ProductModel.empty() {
-    return ProductModel(
-      id: '',
-      title: '',
-      stock: 0,
-      price: 0.0,
-      thumbnail: '',
-      productType: ProductType.single,
-      images: [],
-      productAttributes: [],
-      productVariations: [],
-    );
-  }
+  factory ProductModel.empty() => ProductModel(
+        id: '',
+        title: '',
+        stock: 0,
+        price: 0.0,
+        thumbnail: '',
+        productType: ProductType.single,
+        images: [],
+        productAttributes: [],
+        productVariations: [],
+      );
 
   factory ProductModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> doc) {
     final json = doc.data()!;
@@ -90,7 +88,6 @@ class ProductModel {
       price: json['Price'],
       thumbnail: json['Thumbnail'],
       productType: json['ProductType'] == 'variable' ? ProductType.variable : ProductType.single,
-      // تبدیل به ProductType
       sku: json['SKU'],
       brand: json['Brand'] != null ? BrandModel.fromJson(json['Brand']) : null,
       date: json['Date'] != null ? DateTime.parse(json['Date']) : null,
@@ -109,6 +106,32 @@ class ProductModel {
               json['ProductVariations'].map((variation) => ProductVariationModel.fromJson(variation)),
             )
           : null,
+    );
+  }
+
+  factory ProductModel.fromQuerySnapshot(QueryDocumentSnapshot<Object?> document) {
+    final data = document.data() as Map<String, dynamic>;
+
+    return ProductModel(
+      id: document.id,
+      sku: data['SKU'] ?? '',
+      title: data['Title'] ?? '',
+      stock: data['Stock'] ?? 0,
+      isFeatured: data['IsFeatured'] ?? false,
+      price: double.parse((data['Price'] ?? 0.8).toString()),
+      salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
+      thumbnail: data['Thumbnail'] ?? '',
+      categoryId: data['CategoryId'] ?? '',
+      description: data['Description'] ?? '',
+      productType: data['ProductType'] ?? '',
+      brand: data['Brand'] != null ? BrandModel.fromJson(data['Brand']) : null,
+      images: data['Images'] != null ? List<String>.from(data['Images']) : [],
+      productAttributes: data['ProductAttributes'] != null
+          ? (data['ProductAttributes'] as List<dynamic>).map((e) => ProductAttributeModel.fromJson(e)).toList()
+          : [],
+      productVariations: data['ProductVariations'] != null
+          ? (data['ProductVariations'] as List<dynamic>).map((e) => ProductVariationModel.fromJson(e)).toList()
+          : [],
     );
   }
 }

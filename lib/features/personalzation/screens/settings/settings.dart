@@ -143,9 +143,7 @@ class SettingsScreen extends StatelessWidget {
 }
 
 void uploadProducts() async {
-  if (kDebugMode) {
-    print("//////////////////////////////");
-  }
+  if (kDebugMode) {}
   try {
     await uploadDummyData(TDummyData.products);
     if (kDebugMode) {

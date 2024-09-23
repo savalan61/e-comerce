@@ -14,11 +14,11 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchProducts();
+    fetchFeaturedProducts();
   }
 
   /// Get All Categories
-  Future<void> fetchProducts() async {
+  Future<void> fetchFeaturedProducts() async {
     try {
       isLoading(true);
       final bool isConnected = await NetworkManager.instance.isConnected();
@@ -27,12 +27,22 @@ class ProductController extends GetxController {
         TLoaders.errorSnackBar(title: "Internet Problem", message: "Check your internet connections");
         return;
       }
-      final cats = await _repo.getAllProducts();
+      final cats = await _repo.getFeaturedProducts();
       allProducts.assignAll(cats);
     } catch (e) {
       TLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
     } finally {
       isLoading(false);
+    }
+  }
+
+  Future<List<ProductModel>> fetchAllFeaturedProducts() async {
+    try {
+      final prods = await _repo.getAllFeaturedProducts();
+      return prods;
+    } catch (e) {
+      TLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
+      return [];
     }
   }
 

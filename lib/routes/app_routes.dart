@@ -35,7 +35,11 @@ class AppRoutes {
     GetPage(name: TRoutes.checkout, page: () => CheckoutScreen()),
     GetPage(name: TRoutes.cart, page: () => CartScreen()),
     // GetPage(name: TRoutes.brand, page: () => BrandScreen()),
-    GetPage(name: TRoutes.allProducts, page: () => AllProductsScreen()),
+    GetPage(
+        name: TRoutes.allProducts,
+        page: () => AllProductsScreen(
+              title: '',
+            )),
     GetPage(name: TRoutes.userProfile, page: () => ProfileScreen()),
     GetPage(name: TRoutes.userAddress, page: () => UserAddressScreen()),
     GetPage(name: TRoutes.signup, page: () => SignupScreen()),
