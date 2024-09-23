@@ -21,7 +21,24 @@ class BrandModel {
     this.productsCount,
   });
 
-  static BrandModel empty() => BrandModel(id: "", name: "", image: "");
+  static BrandModel empty() => BrandModel(
+        id: "",
+        name: "",
+        image: "",
+        isFeatured: false,
+        productsCount: 0,
+      );
+
+  factory BrandModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> doc) {
+    final snapshot = doc.data()!;
+    return BrandModel(
+      id: doc.id,
+      name: snapshot['name'] ?? '',
+      image: snapshot['image'] ?? '',
+      isFeatured: snapshot['isFeatured'] ?? false,
+      productsCount: snapshot['productsCount'] ?? 0,
+    );
+  }
 
   factory BrandModel.fromJson(Map<String, dynamic> snapshot) {
     return BrandModel(
@@ -38,13 +55,13 @@ class BrandModel {
       'id': id,
       'name': name,
       'image': image,
-      'isFeatured': isFeatured,
-      'productsCount': productsCount,
+      'isFeatured': isFeatured ?? false,
+      'productsCount': productsCount ?? 0,
     };
   }
 }
 
-Future<void> uploadDummyData(List<BrandModel> brands) async {
+Future<void> uploadBrandsData(List<BrandModel> brands) async {
   final db = FirebaseFirestore.instance;
 
   try {
@@ -52,9 +69,10 @@ Future<void> uploadDummyData(List<BrandModel> brands) async {
 
     for (var ban in brands) {
       final file = await storage.getImageDataFromAssets(ban.image);
-      // final url = await storage.uploadImageData("Brands", file, ban.name);
+      final url = await storage.uploadImageData("Brands", file, ban.name);
+      ban.image = url;
 
-      await db.collection("Brands").add(ban.toJson());
+      await db.collection("Brands").doc(ban.id).set(ban.toJson());
     }
   } on FirebaseException catch (e) {
     throw TFirebaseException(e.code).message;

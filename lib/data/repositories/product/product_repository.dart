@@ -55,6 +55,22 @@ class ProductRepository extends GetxController {
       throw 'Error fetching categories: $e';
     }
   }
+
+  Future<List<ProductModel>> getBrandProducts({required String brandId}) async {
+    try {
+      var query = _db.collection('Products').where("Brand.id", isEqualTo: brandId);
+
+      final snapshot = await query.get();
+      final products = snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+      return products;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Error fetching products: $e';
+    }
+  }
 }
 
 Future<void> uploadDummyData(List<ProductModel> products) async {

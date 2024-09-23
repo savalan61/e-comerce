@@ -38,17 +38,19 @@ class TCircularImage extends StatelessWidget {
           ? ClipRRect(
               borderRadius: BorderRadius.circular(100),
               child: Center(
-                child: CachedNetworkImage(
-                  imageUrl: image,
-                  fit: fit,
-                  color: overlyColor,
-                  progressIndicatorBuilder: (context, url, progress) => const TShimmerEffect(
-                    width: 55,
-                    height: 55,
-                    radius: 100,
-                  ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                ),
+                child: image.isNotEmpty
+                    ? CachedNetworkImage(
+                        imageUrl: image,
+                        fit: fit,
+                        color: overlyColor,
+                        progressIndicatorBuilder: (context, url, progress) => const TShimmerEffect(
+                          width: 55,
+                          height: 55,
+                          radius: 100,
+                        ),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                      )
+                    : const Icon(Icons.error),
               ),
             )
           : Image(

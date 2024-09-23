@@ -8,12 +8,12 @@ import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/features/personalzation/screens/address/address.dart';
 import 'package:t_store/features/personalzation/screens/profile/profile.dart';
+import 'package:t_store/features/shop/models/brand_model.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/list_tiles/user_profile_tile.dart';
 import '../../../../data/dummy_data.dart';
-import '../../../../data/repositories/product/product_repository.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
@@ -145,7 +145,8 @@ class SettingsScreen extends StatelessWidget {
 void uploadProducts() async {
   if (kDebugMode) {}
   try {
-    await uploadDummyData(TDummyData.products);
+    // await uploadDummyData(TDummyData.products);
+    await uploadBrandsData(TDummyData.dummyBrands);
     if (kDebugMode) {
       print("Products uploaded successfully!");
     }

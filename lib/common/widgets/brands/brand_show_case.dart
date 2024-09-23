@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/shop/models/brand_model.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../custom_shapes/containers/rounded_container.dart';
@@ -25,7 +26,11 @@ class TBrandShowCase extends StatelessWidget {
       padding: const EdgeInsets.all(TSizes.sm),
       child: Column(
         children: [
-          TBrandCard(isDark: isDark, showBorder: false),
+          TBrandCard(
+            isDark: isDark,
+            showBorder: false,
+            brandModel: BrandModel.empty(),
+          ),
           const SizedBox(height: TSizes.spaceBtwItems),
           Row(
             children: images.map((e) => brandTopProductImageWidget(e, context)).toList(),

@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/cart/cart_menu_icon.dart';
+import 'package:t_store/common/widgets/shimmer/brand_shimmer.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/shop/controllers/brand%20controller/brands_controller.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
-import 'package:t_store/features/shop/models/product_model.dart';
-import 'package:t_store/features/shop/screens/brands/all_brands.dart';
 import 'package:t_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -17,6 +17,7 @@ import '../../../../common/widgets/appbar/t_tabBar.dart';
 import '../../../../common/widgets/brands/t_brand_cart.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
 import '../../../../utils/helpers/helper_functions.dart';
+import '../../../personalzation/screens/profile/profile.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -25,6 +26,7 @@ class StoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDark = THelperFunctions.isDarkMode(context);
     final catCtrl = CategoryController.instance;
+    final brandCtrl = Get.put(BrandsController());
     return DefaultTabController(
       length: catCtrl.featuredCategories.length,
       child: Scaffold(
@@ -66,23 +68,34 @@ class StoreScreen extends StatelessWidget {
                       TSectionHeading(
                           title: "Featured Brands",
                           onPressed: () {
-                            Get.to(AllBrandsScreen(
-                              productModel: ProductModel.empty(),
-                            ));
+                            // Get.to(() => AllBrandsScreen());
+                            Get.to(() => const ProfileScreen());
                           }),
                       SizedBox(height: TSizes.spaceBtwItems / 1.5),
 
                       /// Brand Grid
-                      TGridLayout(
-                        mainAxisExtent: 80,
-                        itemCount: 4,
-                        itemBuilder: (p0, index) {
-                          return TBrandCard(
-                            isDark: isDark,
-                            showBorder: false,
-                          );
-                        },
-                      ),
+                      Obx(() {
+                        if (brandCtrl.isLoading.value) return TBrandsShimmer();
+                        if (brandCtrl.featuredBrands.isEmpty) {
+                          return Center(
+                              child: Text(
+                            "No Data Found",
+                            style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),
+                          ));
+                        }
+
+                        return TGridLayout(
+                          mainAxisExtent: 80,
+                          itemCount: brandCtrl.featuredBrands.length,
+                          itemBuilder: (p0, index) {
+                            return TBrandCard(
+                              isDark: isDark,
+                              showBorder: false,
+                              brandModel: brandCtrl.featuredBrands[index],
+                            );
+                          },
+                        );
+                      }),
                     ],
                   ),
                 ),

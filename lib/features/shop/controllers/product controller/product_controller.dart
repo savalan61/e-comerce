@@ -17,7 +17,7 @@ class ProductController extends GetxController {
     fetchFeaturedProducts();
   }
 
-  /// Get All Categories
+  /// Get All Products
   Future<void> fetchFeaturedProducts() async {
     try {
       isLoading(true);
