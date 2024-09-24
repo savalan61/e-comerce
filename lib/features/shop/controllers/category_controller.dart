@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/loaders/loaders.dart';
 import 'package:t_store/data/repositories/categories/category_repository.dart';
@@ -62,17 +63,21 @@ class CategoryController extends GetxController {
 
       subCategories.assignAll(subCats);
     } catch (e) {
-      TLoaders.errorSnackBar(
-        title: "Oh Snap!",
-        message: e.toString(),
-      );
+      TLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
     } finally {
       isLoadingSubs(false);
     }
   }
 
   Future<List<ProductModel>> getCategoryProduct({required String cateId, int limit = -1}) async {
-    final products = await ProductRepository.instance.getProductsForCategory(categoryId: cateId, limit: limit);
-    return products;
+    try {
+      final products = await ProductRepository.instance.getProductsForCategory(categoryId: cateId, limit: limit);
+      return products;
+    } catch (e) {
+      TLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
+      return [];
+    }
   }
 }
+
+final db = FirebaseFirestore.instance;

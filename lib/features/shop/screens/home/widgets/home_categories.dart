@@ -35,7 +35,7 @@ class THomeCategories extends StatelessWidget {
               onPress: () {
                 // catCtrl.getSubCategories(featuredCategories[index].parentId);
                 Get.to(() => SubCategoriesScreen(
-                      parentId: featuredCategories[index].id,
+                      category: featuredCategories[index],
                     ));
               },
             );

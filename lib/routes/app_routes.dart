@@ -18,7 +18,6 @@ import '../features/shop/screens/checkout/checkout.dart';
 import '../features/shop/screens/home/home.dart';
 import '../features/shop/screens/order/order.dart';
 import '../features/shop/screens/store/store.dart';
-import '../features/shop/screens/subCategories/sub_categories.dart';
 import 'routes.dart';
 
 class AppRoutes {
@@ -27,7 +26,7 @@ class AppRoutes {
     GetPage(name: TRoutes.store, page: () => StoreScreen()),
     GetPage(name: TRoutes.favourites, page: () => WishlistScreen()),
     GetPage(name: TRoutes.settings, page: () => SettingsScreen()),
-    GetPage(name: TRoutes.subCategories, page: () => SubCategoriesScreen(parentId: '')),
+    // GetPage(name: TRoutes.subCategories, page: () => SubCategoriesScreen(parentId: '')),
     // GetPage(name: TRoutes.search, page: () => SearchScreen()),
     // GetPage(name: TRoutes.productReviews, page: () => ProductReviewsScreen()),
     // GetPage(name: TRoutes.productDetail, page: () => ProductDetailScreen()),

@@ -5,22 +5,23 @@ import 'package:get/get.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/images/t_rounded_image.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
+import 'package:t_store/features/shop/models/category_mode.dart';
 import 'package:t_store/features/shop/screens/subCategories/widgets/sucCategory_slider_widgwt.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class SubCategoriesScreen extends StatelessWidget {
-  const SubCategoriesScreen({super.key, required this.parentId});
+  const SubCategoriesScreen({super.key, required this.category});
 
-  final String parentId;
+  final CategoryModel category;
 
   @override
   Widget build(BuildContext context) {
     final catCtrl = CategoryController.instance;
-    catCtrl.getSubCategories(parentId);
+    catCtrl.getSubCategories(category.id);
     final subCats = catCtrl.subCategories;
     return Scaffold(
-      appBar: TAppbar(title: Text("Sports"), showBackArrow: true),
+      appBar: TAppbar(title: Text(category.name), showBackArrow: true),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(TSizes.defaultSpace),
         child: Column(
