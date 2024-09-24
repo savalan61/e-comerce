@@ -45,7 +45,7 @@ class AllBrandsScreen extends StatelessWidget {
                   brandModel: allBrands[index],
                   showBorder: true,
                   onTap: () => Get.to(() => BrandProduct(
-                        brandModel: allBrands[0],
+                        brandModel: allBrands[index],
                       )),
                 ),
               );

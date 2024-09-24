@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/loaders/loaders.dart';
 import 'package:t_store/data/repositories/categories/category_repository.dart';
+import 'package:t_store/data/repositories/product/product_repository.dart';
 import 'package:t_store/features/shop/models/category_mode.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/helpers/network_manager.dart';
 
 class CategoryController extends GetxController {
@@ -67,5 +69,10 @@ class CategoryController extends GetxController {
     } finally {
       isLoadingSubs(false);
     }
+  }
+
+  Future<List<ProductModel>> getCategoryProduct({required String cateId, int limit = -1}) async {
+    final products = await ProductRepository.instance.getProductsForCategory(categoryId: cateId, limit: limit);
+    return products;
   }
 }

@@ -10,9 +10,11 @@ import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/controllers/brand%20controller/brands_controller.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
 import 'package:t_store/features/shop/screens/brands/brand_product.dart';
+import 'package:t_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
+import '../../../../common/widgets/appbar/t_tabBar.dart';
 import '../../../../common/widgets/brands/t_brand_cart.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
 import '../../../../utils/helpers/helper_functions.dart';
@@ -103,23 +105,23 @@ class StoreScreen extends StatelessWidget {
                 ),
 
                 /// Tabs
-                // bottom: TTabBar(
-                //     isDark: isDark,
-                //     tabs: List.generate(
-                //       catCtrl.featuredCategories.length,
-                //       (index) => Tab(child: Text(catCtrl.featuredCategories[index].name)),
-                //     )),
+                bottom: TTabBar(
+                    isDark: isDark,
+                    tabs: List.generate(
+                      catCtrl.featuredCategories.length,
+                      (index) => Tab(child: Text(catCtrl.featuredCategories[index].name)),
+                    )),
               )
             ];
           },
-          // body: TabBarView(
-          //     children: List.generate(
-          //         catCtrl.featuredCategories.length,
-          //         (index) => TCategoryTab(
-          //               isDark: isDark,
-          //               categoryModel: catCtrl.featuredCategories[index],
-          //             ))),
-          body: Container(),
+          body: TabBarView(
+              children: List.generate(
+                  catCtrl.featuredCategories.length,
+                  (index) => TCategoryTab(
+                        isDark: isDark,
+                        categoryModel: catCtrl.featuredCategories[index],
+                      ))),
+          // body: Container(),
         ),
       ),
     );

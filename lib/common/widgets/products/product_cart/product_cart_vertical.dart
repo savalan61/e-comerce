@@ -62,15 +62,17 @@ class TProductCartVertical extends StatelessWidget {
                         applyImageRadius: true,
                       ),
                     ),
-                    Positioned(
-                        top: 12,
-                        child: TRoundedContainer(
-                          radius: TSizes.sm,
-                          backGroundColor: TColors.secondary.withOpacity(.8),
-                          padding: EdgeInsets.symmetric(vertical: TSizes.xs, horizontal: TSizes.sm),
-                          child: Text('$salePercentage%',
-                              style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
-                        )),
+
+                    if (salePercentage != null)
+                      Positioned(
+                          top: 12,
+                          child: TRoundedContainer(
+                            radius: TSizes.sm,
+                            backGroundColor: TColors.secondary.withOpacity(.8),
+                            padding: EdgeInsets.symmetric(vertical: TSizes.xs, horizontal: TSizes.sm),
+                            child: Text('$salePercentage%',
+                                style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
+                          )),
 
                     /// Favorite Icon button
                     Positioned(top: 0, right: 0, child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red))

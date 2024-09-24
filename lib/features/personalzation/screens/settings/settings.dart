@@ -13,7 +13,7 @@ import 'package:t_store/features/shop/screens/order/order.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/list_tiles/user_profile_tile.dart';
 import '../../../../data/dummy_data.dart';
-import '../../../../data/repositories/product/product_repository.dart';
+import '../../../../data/repositories/categories/category_repository.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
@@ -147,14 +147,15 @@ class SettingsScreen extends StatelessWidget {
 void uploadProducts() async {
   if (kDebugMode) {}
   try {
-    await uploadDummyData(TDummyData.products);
+    // await uploadDummyData(TDummyData.products);
     // await uploadBrandsData(TDummyData.dummyBrands);
+    await uploadDummyCatData(TDummyData.jewelryCategories);
     if (kDebugMode) {
-      print("Products uploaded successfully!");
+      print(" uploaded successfully!");
     }
   } catch (e) {
     if (kDebugMode) {
-      print("Error uploading products: $e");
+      print("Error uploading : $e");
     }
   }
 }

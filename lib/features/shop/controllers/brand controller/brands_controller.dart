@@ -14,16 +14,16 @@ class BrandsController extends GetxController {
   final RxBool isLoading = false.obs;
   final RxList<BrandModel> featuredBrands = <BrandModel>[].obs;
   final RxList<BrandModel> allBrands = <BrandModel>[].obs;
+  final brandRepo = Get.put(BrandRepository());
 
   @override
   void onInit() {
-    fetchAllBrands();
+    fetchBrands();
     super.onInit();
   }
 
-  /// Get Featured Brands
-
-  Future<void> fetchAllBrands() async {
+  /// Get Brands
+  Future<void> fetchBrands() async {
     try {
       isLoading(true);
       final bool isConnected = await NetworkManager.instance.isConnected();
@@ -43,8 +43,18 @@ class BrandsController extends GetxController {
     }
   }
 
-  Future<List<ProductModel>> getBrandProducts(String brandId) async {
-    final prods = await ProductRepository.instance.getBrandProducts(brandId: brandId);
+  Future<List<ProductModel>> getBrandProducts({required String brandId, int limit = -1}) async {
+    final prods = await ProductRepository.instance.getBrandProducts(brandId: brandId, limit: limit);
     return prods;
+  }
+
+  Future<List<BrandModel>> getBrandsForCategory(String catId) async {
+    try {
+      final prods = await brandRepo.getBrandsForCategory(catId);
+      return prods;
+    } catch (e) {
+      TLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
+      return [];
+    }
   }
 }

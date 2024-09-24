@@ -1,18 +1,25 @@
 ![T_Store App Screenshot](https://firebasestorage.googleapis.com/v0/b/e-commerce-app-a468c.appspot.com/o/image%20for%20github%2Fphoto_2_2024-09-20_16-16-20.jpg?alt=media&token=b5b61b2d-b5bd-4f9a-8a24-4796831d33a1)
 
 ## Overview
-**T_Store** is a cross-platform mobile e-commerce application built using **Flutter** for the frontend and **Firebase** for the backend. It provides users with a smooth and efficient shopping experience, from browsing products to completing orders, all in real-time.
 
-The app is fully integrated with **Firebase Authentication** for secure user sign-in and sign-up, and **Firestore** for storing and managing product data. It’s designed to scale and offers a fast, responsive UI for users on both Android and iOS.
+**E_Store** is a cross-platform mobile e-commerce application built using **Flutter** for the
+frontend and **Firebase** for the backend. It provides users with a smooth and efficient shopping
+experience, from browsing products to completing orders, all in real-time.
+
+The app is fully integrated with **Firebase Authentication** for secure user sign-in and sign-up,
+and **Firestore** for storing and managing product data. It’s designed to scale and offers a fast,
+responsive UI for users on both Android and iOS.
 
 ## Key Features
 
 - **User Authentication**: Sign up, sign in, and manage user accounts using Firebase Authentication.
 - **Product Listing**: View dynamic product listings managed in Firebase Firestore.
 - **Cart & Checkout**: Users can add products to their cart and proceed to secure checkout.
-- **Real-Time Updates**: Instant product updates, pricing changes, and stock management with Firebase Firestore.
+- **Real-Time Updates**: Instant product updates, pricing changes, and stock management with
+  Firebase Firestore.
 - **Secure Image Storage**: Product images and user data are securely stored using Firebase Storage.
-- **Push Notifications** (optional): Stay updated with the latest deals and order status using Firebase Cloud Messaging.
+- **Push Notifications** (optional): Stay updated with the latest deals and order status using
+  Firebase Cloud Messaging.
 
 ## Screenshots
 
@@ -23,6 +30,7 @@ The app is fully integrated with **Firebase Authentication** for secure user sig
 </div>
 
 ### Screenshot Files
+
 - `photo_5_2024-09-20_16-16-20.jpg`: Cart and product listing view.
 - `photo_4_2024-09-20_16-16-20.jpg`: Checkout page.
 - `photo_3_2024-09-20_16-16-20.jpg`: User profile and settings.
@@ -39,5 +47,6 @@ Ensure you have **Flutter** and **Dart SDK** installed. This project requires:
 - **Dart SDK** version: `>=2.18.6`
 
 If your environment does not meet the version requirements, you can update Flutter by running:
+
 ```bash
 flutter upgrade

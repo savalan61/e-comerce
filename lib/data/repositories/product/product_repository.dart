@@ -56,9 +56,11 @@ class ProductRepository extends GetxController {
     }
   }
 
-  Future<List<ProductModel>> getBrandProducts({required String brandId}) async {
+  Future<List<ProductModel>> getBrandProducts({required String brandId, int limit = -1}) async {
     try {
-      var query = _db.collection('Products').where("Brand.id", isEqualTo: brandId);
+      var query = limit == -1
+          ? _db.collection('Products').where("Brand.id", isEqualTo: brandId)
+          : _db.collection('Products').where("Brand.id", isEqualTo: brandId).limit(limit);
 
       final snapshot = await query.get();
       final products = snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
@@ -69,6 +71,35 @@ class ProductRepository extends GetxController {
       throw TPlatformException(e.code).message;
     } catch (e) {
       throw 'Error fetching products: $e';
+    }
+  }
+
+  Future<List<ProductModel>> getProductsForCategory({
+    required String categoryId,
+    int limit = 4,
+  }) async {
+    try {
+      // Query to get all documents where productId matches the provided categoryId
+      QuerySnapshot productCategoryQuery = limit == -1
+          ? await _db.collection('ProductCategory').where('categoryId', isEqualTo: categoryId).get()
+          : await _db.collection('ProductCategory').where('categoryId', isEqualTo: categoryId).limit(limit).get();
+
+      // Extract productIds from the documents
+      List<String> productIds = productCategoryQuery.docs.map((doc) => doc['productId'] as String).toList();
+
+      // Query to get all products where the productId is in the list of productIds
+      final productsQuery = await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
+
+      // Extract product data and map to ProductModel
+      List<ProductModel> products = productsQuery.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+
+      return products;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
     }
   }
 }
